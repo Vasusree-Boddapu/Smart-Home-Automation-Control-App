@@ -1,0 +1,217 @@
+<!-- ======================= index.html ======================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Home Automation</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- SMART HOME AUTOMATION - FULL UPDATED INDEX.HTML -->
+
+<!-- ======================= AUTH PAGES ======================= -->
+
+  <!-- REGISTER PAGE -->
+  <div id="registerPage" class="auth-page hidden">
+    <div class="auth-box glass">
+      <h2>Create Account</h2>
+      <input id="regName" placeholder="Full Name" />
+      <input id="regEmail" placeholder="Email" />
+      <input id="regPass" type="password" placeholder="Password" />
+      <input id="regCPass" type="password" placeholder="Confirm Password" />
+      <button id="registerBtn">Register</button>
+      <p class="error-text" id="regError"></p>
+      <p class="link" id="goLoginLink">Already have an account? Login</p>
+    </div>
+  </div>
+
+  <!-- LOGIN PAGE -->
+  <div id="loginPage" class="auth-page">
+    <div class="auth-box glass">
+      <h2>Login</h2>
+      <input id="loginEmail" placeholder="Email" />
+      <input id="loginPass" type="password" placeholder="Password" />
+      <button id="loginBtn">Login</button>
+      <p class="error-text" id="loginError"></p>
+      <p class="link" id="goRegisterLink">Don't have an account? Register</p>
+      <p class="link" id="forgotLink">Forgot password?</p>
+    </div>
+  </div>
+
+  <!-- FORGOT PASSWORD PAGE -->
+  <div id="forgotPage" class="auth-page hidden">
+    <div class="auth-box glass">
+      <h2>Reset Password</h2>
+      <input id="forgotEmail" placeholder="Registered Email" />
+      <input id="forgotPass" type="password" placeholder="New Password" />
+      <input id="forgotCPass" type="password" placeholder="Confirm Password" />
+      <button id="resetBtn">Reset Password</button>
+      <p class="error-text" id="forgotError"></p>
+      <p class="link" id="backToLoginLink">Back to Login</p>
+    </div>
+  </div>
+
+<!-- ======================= MAIN APP ======================= -->
+
+  <div id="app" class="app hidden">
+
+    <aside class="sidebar glass-strong">
+      <div class="sidebar-header">
+        <h2>SmartHome</h2>
+        <small id="userNameLabel"></small>
+      </div>
+
+      <nav class="nav">
+        <div class="nav-item" data-page="dashboard">Dashboard</div>
+        <div class="nav-item" data-page="devices">Devices</div>
+        <div class="nav-item" data-page="automation">Automations</div>
+        <div class="nav-item" data-page="energy">Energy Analytics</div>
+        <div class="nav-item" data-page="security">Security</div>
+        <div class="nav-item" data-page="notifications">Notifications</div>
+        <div class="nav-item" data-page="profile">Profile</div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button id="themeToggle" class="secondary-btn">Toggle Dark Mode</button>
+        <button id="logoutBtn" class="danger-btn">Logout</button>
+      </div>
+    </aside>
+
+    <main class="content">
+
+<!-- ======================= DASHBOARD ======================= -->
+
+      <section id="dashboard" class="page">
+        <h1>Dashboard</h1>
+        <div class="grid">
+          <div class="card glass"><h3>Total Devices</h3><p id="countDevices" class="metric"></p></div>
+          <div class="card glass"><h3>Energy Usage Today</h3><p id="energyToday" class="metric">4.9 kWh</p></div>
+          <div class="card glass"><h3>Active Alerts</h3><p id="alertCount" class="metric"></p></div>
+        </div>
+      </section>
+
+<!-- ======================= DEVICES ======================= -->
+
+      <section id="devices" class="page hidden">
+        <h1>Devices</h1>
+        <div class="card glass">
+          <h3>Add Device</h3>
+          <input id="deviceName" placeholder="Device Name" />
+          <select id="deviceType">
+            <option value="light">Light</option>
+            <option value="ac">AC</option>
+            <option value="fan">Fan</option>
+          </select>
+          <button id="addDeviceBtn">Add Device</button>
+        </div>
+
+        <h2>Available Devices</h2>
+        <div class="grid" id="deviceList"></div>
+      </section>
+
+<!-- ======================= AUTOMATIONS ======================= -->
+
+      <section id="automation" class="page hidden">
+        <h1>Automations</h1>
+        <div class="card glass">
+          <h3>Create Automation</h3>
+          <input id="autoName" placeholder="Automation Name" />
+          <select id="autoDevice"></select>
+          <select id="autoAction">
+            <option value="on">Turn ON</option>
+            <option value="off">Turn OFF</option>
+          </select>
+          <button id="saveAutomationBtn">Save Automation</button>
+        </div>
+
+        <h2>Saved Automations</h2>
+        <div id="autoList"></div>
+      </section>
+
+<!-- ======================= ENERGY ANALYTICS ======================= -->
+
+      <section id="energy" class="page hidden">
+        <h1>Energy Analytics</h1>
+
+        <div class="grid">
+          <div class="card glass">
+            <h3>Total Energy Gauge</h3>
+            <canvas id="energyGaugeChart" height="130"></canvas>
+          </div>
+
+          <div class="card glass">
+            <h3>Energy Per Device (W)</h3>
+            <canvas id="energyBarChart" height="130"></canvas>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="card glass">
+            <h3>Daily Energy (7 Days)</h3>
+            <canvas id="energyLineChart" height="130"></canvas>
+          </div>
+
+          <div class="card glass">
+            <h3>Energy by Category</h3>
+            <canvas id="energyPieChart" height="130"></canvas>
+          </div>
+        </div>
+
+        <div class="card glass">
+          <h3>Energy Breakdown</h3>
+          <div id="energyList"></div>
+        </div>
+      </section>
+
+<!-- ======================= SECURITY ======================= -->
+
+      <section id="security" class="page hidden">
+        <h1>Security Cameras</h1>
+        <div class="grid">
+          <div class="card glass"><h3>Front Door</h3><div class="camera-feed">Live Feed</div></div>
+          <div class="card glass"><h3>Hallway</h3><div class="camera-feed">Live Feed</div></div>
+        </div>
+      </section>
+
+<!-- ======================= NOTIFICATIONS ======================= -->
+
+      <section id="notifications" class="page hidden">
+        <h1>Alerts & Notifications</h1>
+
+        <div class="alert-controls">
+          <button id="markReadBtn" class="secondary-btn">Mark All as Read</button>
+          <button id="clearAlertsBtn" class="danger-btn">Clear All Alerts</button>
+        </div>
+
+        <div id="notifContainer"></div>
+      </section>
+
+<!-- ======================= PROFILE ======================= -->
+
+      <section id="profile" class="page hidden">
+        <h1>Profile</h1>
+        <div class="card glass">
+          <h3>User Details</h3>
+          <input id="profileName" placeholder="Full Name" />
+          <input id="profileEmail" placeholder="Email" disabled />
+          <button id="saveProfileBtn">Save Profile</button>
+          <p class="info-text">Email cannot be changed.</p>
+        </div>
+
+        <div class="card glass">
+          <h3>Change Password</h3>
+          <input id="profilePass" type="password" placeholder="New Password" />
+          <input id="profileCPass" type="password" placeholder="Confirm Password" />
+          <button id="changePasswordBtn">Update Password</button>
+          <p class="error-text" id="profileError"></p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  <!-- (Content too long for preview response; this is placeholder) -->
+  <script src="script.js"></script>
+</body>
+</html>
